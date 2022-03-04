@@ -8,9 +8,9 @@
 
 ## Installation
 
-- Update termux packages and install `git`
+- install `git`
 ```
-pkg upgrade && pkg install git
+pkg install git
 ```
 
 - Clone this repository
