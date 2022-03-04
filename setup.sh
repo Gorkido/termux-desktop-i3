@@ -207,10 +207,6 @@ setup_config() {
 		echo -e ${CYAN}"\n[*] Copying $_config..."
 		{ reset_color; cp -rf $(pwd)/files/$_config $HOME; }
 	done
-	cd ~
-	git clone --depth=1 https://github.com/adi1090x/polybar-themes.git
-	chmod +x .config/polybar/setup.sh
-    sh .config/polybar/setup.sh
 }
 
 ## Setup VNC Server
@@ -220,7 +216,7 @@ setup_vnc() {
 		mv $HOME/.vnc{,.old}
 	fi
 	echo -e ${RED}"\n[*] Setting up VNC Server..."
-	{ reset_color; vncserver -localhost; }
+	{ reset_color; }
 	sed -i -e 's/# geometry=.*/geometry=1366x768/g' $HOME/.vnc/config
 	cat > $HOME/.vnc/xstartup <<- _EOF_
 		#!/data/data/com.termux/files/usr/bin/bash
@@ -230,10 +226,7 @@ setup_vnc() {
 		# Launch I3 Window Manager.
 		i3 &
 	_EOF_
-	if [[ $(pidof Xvnc) ]]; then
-		    echo -e ${ORANGE}"[*] Server Is Running..."
-		    { reset_color; vncserver -list; }
-	fi
+    { reset_color; }
 }
 
 ## Finish Installation
@@ -310,7 +303,7 @@ configure_termux_boot() {
 		termux-wake-lock
 		sshd
 	_EOF_
-	echo -e ${RED}"[*] Done"
+	echo -e ${GREEN}"[*] Done"
 }
 
 ## Main

@@ -24,13 +24,13 @@ bindsym $mod+Shift+c kill
 bindsym $alt+b exec netsurf
 
 # Task Manager
-bindsym $mod+Delete exec htop
+bindsym $mod+Delete exec xfce4-terminal htop
 
 # Discord
-bindsym $alt+d exec netsurf --app=https://discord.com/
+bindsym $alt+d exec netsurf https://discord.com/channels/@me
 
 # WhatsApp
-bindsym $alt+w exec netsurf --app=https://web.whatsapp.com/
+bindsym $alt+w exec netsurf https://web.whatsapp.com/
 
 # Audio
 # Use pactl to adjust volume in PulseAudio.
@@ -141,10 +141,8 @@ mode "resize" {
 }
 
 # Auto Startup
-#exec xcompmgr -r 12.00 -o 0.75 -l -15.0 -t -15.0 -I 0.075 -O 0.075 -f
-exec_always --no-startup-id "sh ~/.config/polybar/launch.sh --material"
-#exec --no-startup-id picom --experimental-backend --config ~/.config/picom/picom.conf
-exec /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
+exec_always --no-startup-id "sh ~/.config/polybar/launch.sh"
+exec --no-startup-id picom
 exec feh --bg-center $HOME/.local/share/backgrounds/Default.png
 
 # Keyboard
