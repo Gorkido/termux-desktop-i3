@@ -56,7 +56,7 @@ _pkgs=(bc bmon calc calcurse curl dbus desktop-file-utils elinks feh fontconfig-
 setup_base() {
 	echo -e ${RED}"\n[*] Installing Termux Desktop..."
 	echo -e ${CYAN}"\n[*] Updating Termux Base... \n"
-	{ reset_color; pkg autoclean; pkg upgrade -y; }
+	{ reset_color; pkg autoclean; pkg update; pkg upgrade -y; }
 	echo -e ${CYAN}"\n[*] Enabling Termux X11-repo... \n"
 	{ reset_color; pkg install -y x11-repo; }
 	echo -e ${CYAN}"\n[*] Installing required programs... \n"
@@ -207,9 +207,10 @@ setup_config() {
 		echo -e ${CYAN}"\n[*] Copying $_config..."
 		{ reset_color; cp -rf $(pwd)/files/$_config $HOME; }
 	done
-	if [[ ! -d "$HOME/Desktop" ]]; then
-		mkdir $HOME/Desktop
-	fi
+	cd ~
+	git clone --depth=1 https://github.com/adi1090x/polybar-themes.git
+	chmod +x .config/polybar/setup.sh
+    sh .config/polybar/setup.sh
 }
 
 ## Setup VNC Server
