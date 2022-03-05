@@ -226,7 +226,7 @@ setup_vnc() {
 		# Launch I3 Window Manager.
 		i3 &
 	_EOF_
-    { reset_color; vncserver -kill :1; vncserver }
+    { reset_color; vncserver -kill :1; vncserver; }
 }
 
 ## Finish Installation
