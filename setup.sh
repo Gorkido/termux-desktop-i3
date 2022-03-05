@@ -49,7 +49,7 @@ usage() {
 ## Update, X11-repo, Program Installation
 _pkgs=(bc bmon calc calcurse curl dbus elinks feh desktop-file-utils fontconfig-utils fsmon \
 		geany gtk2 gtk3 htop-legacy imagemagick jq leafpad man mpc mpd mutt ncmpcpp \
-		ncurses-utils neofetch netsurf obconf openssl-tool polybar ranger rofi \
+		ncurses-utils neofetch otter-browser obconf openssl-tool polybar ranger rofi \
 		startup-notification termux-api pcmanfm tigervnc neovim wget xarchiver xbitmaps \
 		xfce4-terminal xmlstarlet xorg-font-util xorg-xrdb zsh i3 picom)
 
@@ -265,7 +265,7 @@ uninstall_td() {
 	# delete files
 	echo -e ${CYAN}"\n[*] Deleting config files...\n"
 	_homefiles=(.fehbg .icons .mpd .ncmpcpp .fonts .gtkrc-2.0 .mutt .themes .vnc)
-	_configfiles=(pcmanfm geany gtk-3.0 leafpad netsurf i3 polybar ranger rofi xfce4)
+	_configfiles=(pcmanfm geany gtk-3.0 leafpad i3 polybar ranger rofi xfce4 otter)
 	_localfiles=(bin lib 'share/backgrounds' 'share/pixmaps')
 	for i in "${_homefiles[@]}"; do
 		if [[ -f "$HOME/$i" || -d "$HOME/$i" ]]; then

@@ -1,0 +1,43 @@
+[
+	{
+		"identifier": "default",
+		"title": "Default User Agent",
+		"value": "Mozilla/5.0 {platform} {engineVersion} {applicationVersion}"
+	},
+	"separator",
+	{
+		"identifier": "chrome",
+		"title": "Mask as Google Chrome 63 (Windows)",
+		"value": "Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.62 Safari/537.36"
+	},
+	{
+		"identifier": "chromeMobile",
+		"title": "Mask as Google Chrome 67 (Android)",
+		"value": "Mozilla/5.0 (Linux; Android 8.1.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.68 Mobile Safari/537.36"
+	},
+	{
+		"identifier": "firefox",
+		"title": "Mask as Mozilla Firefox 60 (Windows)",
+		"value": "Mozilla/5.0 (Windows NT 10.0; rv:60.0) Gecko/20100101 Firefox/60.0"
+	},
+	{
+		"identifier": "edge",
+		"title": "Mask as Microsoft Edge 42 (Windows)",
+		"value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.140 Safari/537.36 Edge/17.17134"
+	},
+	{
+		"identifier": "internetExplorer",
+		"title": "Mask as Internet Explorer 11.0 (Windows)",
+		"value": "Mozilla/5.0 (Windows NT 10.0; Trident/7.0; rv:11.0)"
+	},
+	{
+		"identifier": "opera",
+		"title": "Mask as Opera 12.18 (Windows)",
+		"value": "Opera/9.80 (Windows NT 6.1) Presto/2.12.388 Version/12.18"
+	},
+	{
+		"identifier": "safari",
+		"title": "Mask as Safari 11.1 (macOS)",
+		"value": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_4) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/11.1 Safari/605.1.15"
+	}
+]

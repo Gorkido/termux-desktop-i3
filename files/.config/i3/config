@@ -21,16 +21,13 @@ bindsym $mod+n workspace back_and_forth
 bindsym $mod+Shift+c kill
 
 # Browser
-bindsym $alt+b exec netsurf
+bindsym $alt+b exec otter-browser
 
 # Task Manager
 bindsym $mod+Delete exec xfce4-terminal htop
 
 # Discord
-bindsym $alt+d exec netsurf https://discord.com/channels/@me
-
-# WhatsApp
-bindsym $alt+w exec netsurf https://web.whatsapp.com/
+bindsym $alt+d exec otter-browser https://discord.com/channels/@me
 
 # Audio
 # Use pactl to adjust volume in PulseAudio.
