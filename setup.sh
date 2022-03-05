@@ -51,7 +51,7 @@ _pkgs=(bc bmon calc calcurse curl dbus elinks feh desktop-file-utils fontconfig-
 		geany git gtk2 gtk3 htop-legacy imagemagick jq leafpad man mpc mpd mutt ncmpcpp \
 		ncurses-utils neofetch netsurf obconf openssl-tool polybar ranger rofi \
 		startup-notification termux-api pcmanfm tigervnc neovim wget xarchiver xbitmaps xcompmgr \
-		xfce4-terminal xmlstarlet xorg-font-util xorg-xrdb zsh i3)
+		xfce4-terminal xmlstarlet xorg-font-util xorg-xrdb zsh i3 picom)
 
 setup_base() {
 	echo -e ${RED}"\n[*] Installing Termux Desktop..."
@@ -127,7 +127,7 @@ setup_omz() {
 		alias grep='grep --color=auto'
 		alias open='termux-open'
 		alias lc='lolcat'
-		alias xx='chmod +x'
+		alias +x='chmod +x'
 		alias rel='termux-reload-settings'
 
 		#------------------------------------------
@@ -152,10 +152,10 @@ setup_omz() {
 	cp $(pwd)/files/.fonts/icons/dejavu-nerd-font.ttf $HOME/.termux/font.ttf
 	# color-scheme
 	cat > $HOME/.termux/colors.properties <<- _EOF_
-		background 		: #263238
+		background 		: #000000
 		foreground 		: #eceff1
 
-		color0  			: #263238
+		color0  			: #000000
 		color8  			: #37474f
 		color1  			: #ff9800
 		color9  			: #ffa74d
@@ -216,7 +216,7 @@ setup_vnc() {
 		mv $HOME/.vnc{,.old}
 	fi
 	echo -e ${RED}"\n[*] Setting up VNC Server..."
-	{ reset_color; }
+	{ reset_color; vncserver; }
 	sed -i -e 's/# geometry=.*/geometry=1366x768/g' $HOME/.vnc/config
 	cat > $HOME/.vnc/xstartup <<- _EOF_
 		#!/data/data/com.termux/files/usr/bin/bash
