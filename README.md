@@ -1,6 +1,6 @@
 <div align="center">
   
-# Termux Desktop i3 (Not Finished)
+# Termux Desktop i3
  
   <img src="https://img.shields.io/github/license/Gorkido/termux-desktop-i3?style=for-the-badge">
   <img src="https://img.shields.io/github/stars/Gorkido/termux-desktop-i3?style=for-the-badge">
