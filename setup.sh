@@ -233,10 +233,8 @@ setup_vnc() {
 post_msg() {
 	echo -e ${GREEN}"\n[*] ${RED}Termux Desktop ${GREEN}Installed Successfully.\n"
 	cat <<- _MSG_
-		[-] Restart termux and enter ${ORANGE}vncserver ${GREEN}command to start the VNC server.
-		[-] In VNC client, enter ${ORANGE}127.0.0.1:5901 ${GREEN}as Address and Password you created to connect.	
-		[-] To connect via PC over Wifi or Hotspot, use it's IP (if wi-fi = wlan0 inet, if ethernet = eth inet), Also, use TigerVNC client.	
-		[-] Make sure you enter the correct port. ie: If server is running on ${ORANGE}Display :2 ${GREEN}then port is ${ORANGE}5902 ${GREEN}and so on.
+		[-] In VNC Viewer, enter ${ORANGE}localhost:1 ${GREEN}as Address and Password you created to connect.	
+		[-] To connect via PC over Wifi or Hotspot, use it's IP (if wi-fi = wlan0 inet, if ethernet = eth inet).	
 		[-] If you wish to kill a server enter ${RED}"vncserver -kill :(server's number)".${GREEN}
 		[-] Have Fun!
 	_MSG_
