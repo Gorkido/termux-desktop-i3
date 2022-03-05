@@ -64,26 +64,6 @@
 							"title": "DuckDuckGo — Privacy, simplified.",
 							"url": "https://duckduckgo.com/",
 							"zoom": 100
-						},
-						{
-							"title": "Error",
-							"url": "http://upload.ae/",
-							"zoom": 100
-						},
-						{
-							"title": "",
-							"url": "https://duckduckgo.com/?q=zippy&sourceid=otter&ia=web",
-							"zoom": 100
-						},
-						{
-							"title": "",
-							"url": "https://duckduckgo.com/?q=upload+ea&ia=web",
-							"zoom": 100
-						},
-						{
-							"title": "UPLOAD.EE",
-							"url": "https://www.upload.ee/",
-							"zoom": 100
 						}
 					],
 					"options": {
