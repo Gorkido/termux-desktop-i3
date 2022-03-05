@@ -127,7 +127,7 @@ setup_omz() {
 		alias grep='grep --color=auto'
 		alias open='termux-open'
 		alias lc='lolcat'
-		alias +x='chmod +x'
+		alias xx='chmod +x'
 		alias rel='termux-reload-settings'
 
 		#------------------------------------------
@@ -216,7 +216,7 @@ setup_vnc() {
 		mv $HOME/.vnc{,.old}
 	fi
 	echo -e ${RED}"\n[*] Setting up VNC Server..."
-	{ reset_color; vncserver; }
+	{ reset_color; }
 	sed -i -e 's/# geometry=.*/geometry=1366x768/g' $HOME/.vnc/config
 	cat > $HOME/.vnc/xstartup <<- _EOF_
 		#!/data/data/com.termux/files/usr/bin/bash
@@ -226,7 +226,7 @@ setup_vnc() {
 		# Launch I3 Window Manager.
 		i3 &
 	_EOF_
-    { reset_color; }
+    { reset_color; vncserver; }
 }
 
 ## Finish Installation
