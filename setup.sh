@@ -61,7 +61,7 @@ setup_base() {
 	{ reset_color; pkg install -y x11-repo; }
 	echo -e ${CYAN}"\n[*] Installing required programs... \n"
 	for package in "${_pkgs[@]}"; do
-		{ reset_color; pkg install -y "$package"; pkg install -y git}
+		{ reset_color; pkg install -y "$package"; pkg install -y git; }
 		_ipkg=$(pkg list-installed $package 2>/dev/null | tail -n 1)
 		_checkpkg=${_ipkg%/*}
 		if [[ "$_checkpkg" == "$package" ]]; then
