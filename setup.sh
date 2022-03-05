@@ -48,7 +48,7 @@ usage() {
 
 ## Update, X11-repo, Program Installation
 _pkgs=(bc bmon calc calcurse curl dbus elinks feh desktop-file-utils fontconfig-utils fsmon \
-		geany git gtk2 gtk3 htop-legacy imagemagick jq leafpad man mpc mpd mutt ncmpcpp \
+		geany gtk2 gtk3 htop-legacy imagemagick jq leafpad man mpc mpd mutt ncmpcpp \
 		ncurses-utils neofetch netsurf obconf openssl-tool polybar ranger rofi \
 		startup-notification termux-api pcmanfm tigervnc neovim wget xarchiver xbitmaps xcompmgr \
 		xfce4-terminal xmlstarlet xorg-font-util xorg-xrdb zsh i3 picom)
@@ -61,7 +61,7 @@ setup_base() {
 	{ reset_color; pkg install -y x11-repo; }
 	echo -e ${CYAN}"\n[*] Installing required programs... \n"
 	for package in "${_pkgs[@]}"; do
-		{ reset_color; pkg install -y "$package"; }
+		{ reset_color; pkg install -y "$package"; pkg install -y git}
 		_ipkg=$(pkg list-installed $package 2>/dev/null | tail -n 1)
 		_checkpkg=${_ipkg%/*}
 		if [[ "$_checkpkg" == "$package" ]]; then
