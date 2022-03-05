@@ -33,8 +33,8 @@ If you want to uninstall *Termux Desktop i3*, run **setup.sh** with `--uninstall
 ```
 ## Todo
 
-- [ ] Fix polybar
-- [ ] Fix the background (or make wallpaper's resolution bigger)
+- [*] Fix polybar
+- [*] Fix the background (or make wallpaper's resolution bigger)
 - [ ] Fix audio
 
 ## Information
