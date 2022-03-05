@@ -40,6 +40,8 @@ If you want to uninstall *Termux Desktop i3*, run **setup.sh** with `--uninstall
 
 ![image](https://user-images.githubusercontent.com/81165187/156889835-2f28e9d6-0a86-4892-ae13-dac6cd2429cb.png)
 
+[Installation Video](https://www.youtube.com/watch?v=S72oCiH6y0g)
+
 ## Information
 
 This repository is a different version of [termux-desktop](https://github.com/adi1090x/termux-desktop).
