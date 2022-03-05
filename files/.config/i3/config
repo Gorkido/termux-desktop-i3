@@ -24,7 +24,7 @@ bindsym $mod+Shift+c kill
 bindsym $alt+b exec otter-browser
 
 # Task Manager
-bindsym $mod+Delete exec xfce4-terminal htop
+bindsym $mod+Delete exec xfce4-terminal -e htop
 
 # Discord
 bindsym $alt+d exec otter-browser https://discord.com/channels/@me
@@ -39,12 +39,6 @@ bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOU
 
 # Start Dmenu (a program launcher)
 bindsym $mod+r exec --no-startup-id ~/.config/rofi/bin/launcher_misc
-
-# Lock the system
-bindsym $mod+l exec sh ~/.config/i3/i3lock-fancy/lock
-
-#get auth work with polkit-gnome
-exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 
 # Switch workspaces with arrow keys
 bindsym $mod+Right workspace next
