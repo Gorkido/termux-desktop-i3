@@ -64,6 +64,7 @@ setup_base() {
 		{ reset_color; }
 	    if [[ "$(which $package)" == "" ]]; then
             echo -e ${GREEN}"\n[*] Installing Package ${ORANGE}$package \n"
+			{ reset_color; }
 			pkg install -y $package
         else
             echo "${ORANGE}$package Already Installed"
