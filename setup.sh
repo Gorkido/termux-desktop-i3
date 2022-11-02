@@ -1,6 +1,6 @@
 #!/data/data/com.termux/files/usr/bin/bash
 
-## Termux Desktop I3 : Setup GUI in Termux 
+## Termux Desktop i3 : Setup GUI in Termux 
 
 ## ANSI Colors (FG & BG)
 RED="$(printf '\033[31m')"  GREEN="$(printf '\033[32m')"  ORANGE="$(printf '\033[33m')"  BLUE="$(printf '\033[34m')"
@@ -42,34 +42,31 @@ banner() {
 ## Show usages
 usage() {
 	banner
-	echo -e ${ORANGE}"\nInstall GUI (I3 Desktop) on Termux"
-	echo -e ${ORANGE}"Usages : $(basename $0) --install | --uninstall | --termux-boot \n"
+	echo -e ${ORANGE}"\nInstall GUI (i3 Desktop) on Termux"
+	echo -e ${ORANGE}"Usages : $(basename $0) --install | --uninstall | --termux-boot | --termux-boot-uninstall\n"
 }
 
 ## Update, X11-repo, Program Installation
-_pkgs=(bc bmon calc calcurse curl dbus elinks feh desktop-file-utils fontconfig-utils fsmon \
-		geany gtk2 gtk3 htop-legacy imagemagick jq leafpad man mpc mpd mutt ncmpcpp \
-		ncurses-utils neofetch otter-browser obconf openssl-tool polybar ranger rofi \
-		startup-notification termux-api pcmanfm tigervnc neovim wget xarchiver xbitmaps \
-		xfce4-terminal xmlstarlet audacious xorg-font-util xorg-xrdb zsh i3 picom)
+_pkgs=(bc bmon calc calcurse curl dbus elinks feh desktop-file-utils fontconfig-utils \
+       fsmon geany gtk2 gtk3 htop imagemagick jq leafpad man mpc mpd mutt ncmpcpp \
+	   ncurses-utils neofetch otter-browser obconf openssl-tool polybar ranger rofi \
+	   startup-notification termux-api pcmanfm tigervnc neovim wget xarchiver xbitmaps \
+	   xfce4-terminal xmlstarlet audacious xorg-font-util xorg-xrdb zsh i3 picom which)
 
 setup_base() {
 	echo -e ${RED}"\n[*] Installing Termux Desktop..."
 	echo -e ${CYAN}"\n[*] Updating Termux Base... \n"
-	{ reset_color; pkg autoclean; pkg update; pkg upgrade -y; }
+	{ reset_color; pkg update; pkg upgrade -y; pkg autoremove; pkg autoclean; }
 	echo -e ${CYAN}"\n[*] Enabling Termux X11-repo... \n"
 	{ reset_color; pkg install -y x11-repo; }
 	echo -e ${CYAN}"\n[*] Installing required programs... \n"
-	for package in "${_pkgs[@]}"; do
-		{ reset_color; pkg install -y "$package"; pkg install -y git; }
-		_ipkg=$(pkg list-installed $package 2>/dev/null | tail -n 1)
-		_checkpkg=${_ipkg%/*}
-		if [[ "$_checkpkg" == "$package" ]]; then
-			echo -e ${GREEN}"\n[*] Package $package installed successfully.\n"
-			continue
-		else
-			echo -e ${MAGENTA}"\n[!] Error installing $package, Terminating...\n"
-			{ reset_color; exit 1; }
+    for package in "${_pkgs[@]}"; do
+		{ reset_color; }
+	    if [[ "$(which $package)" == "" ]]; then
+            echo -e ${GREEN}"\n[*] Installing Package ${ORANGE}$package \n"
+			pkg install -y $package
+        else
+            echo "${ORANGE}$package Already Installed"
 		fi
 	done
 	reset_color
@@ -88,6 +85,7 @@ setup_omz() {
 			echo -e ${MAGENTA}"\n[!] $file Doesn't Exist."			
 		fi
 	done
+
 	# installing omz
 	echo -e ${CYAN}"\n[*] Installing Oh-my-zsh... \n"
 	{ reset_color; git clone https://github.com/robbyrussell/oh-my-zsh.git --depth 1 $HOME/.oh-my-zsh; }
@@ -111,9 +109,11 @@ setup_omz() {
 		ZSH_THEME_GIT_PROMPT_DIRTY="%{\$fg[blue]%}) %{\$fg[yellow]%}✗"
 		ZSH_THEME_GIT_PROMPT_CLEAN="%{\$fg[blue]%})"
 	_EOF_
+
 	# Append some aliases
 	cat >> $HOME/.zshrc <<- _EOF_
 		#------------------------------------------
+
 		alias l='ls -lh'
 		alias ll='ls -lah'
 		alias la='ls -a'
@@ -140,7 +140,13 @@ setup_omz() {
 		# linux sftp (Arch)
 		#alias archfs='sftp -i ~/.ssh/id_rsa.DEVICE UNAME@IP'
 
+		#------------------------------------------
+        
+		# Print system information
+		
 		neofetch
+
+		#------------------------------------------
 	_EOF_
 
 	# configuring termux
@@ -148,8 +154,10 @@ setup_omz() {
 	if [[ ! -d "$HOME/.termux" ]]; then
 		mkdir $HOME/.termux
 	fi
+
 	# copy font
 	cp $(pwd)/files/.fonts/icons/dejavu-nerd-font.ttf $HOME/.termux/font.ttf
+	
 	# color-scheme
 	cat > $HOME/.termux/colors.properties <<- _EOF_
 		background 		: #000000
@@ -172,6 +180,7 @@ setup_omz() {
 		color7  			: #cfd8dc
 		color15 			: #eceff1
 	_EOF_
+
 	# button config
 	cat > $HOME/.termux/termux.properties <<- _EOF_
 		extra-keys = [ \\
@@ -183,7 +192,7 @@ setup_omz() {
     # remove welcome texts
     rm -rf /data/data/com.termux/files/usr/etc/motd
 
-	# change shell and reload configs
+	# change shell, reload settings, and enable access to /storage.
 	{ chsh -s zsh; termux-reload-settings; termux-setup-storage; }
 }
 
@@ -216,7 +225,6 @@ setup_vnc() {
 		mv $HOME/.vnc{,.old}
 	fi
 	echo -e ${RED}"\n[*] Setting up VNC Server..."
-	{ reset_color; vncserver;}
 	sed -i -e 's/# geometry=.*/geometry=1920x1080/g' $HOME/.vnc/config
 	cat > $HOME/.vnc/xstartup <<- _EOF_
 		#!/data/data/com.termux/files/usr/bin/bash
@@ -226,7 +234,7 @@ setup_vnc() {
 		# Launch I3 Window Manager.
 		i3 &
 	_EOF_
-    { reset_color; vncserver -kill :1; vncserver; }
+    { reset_color; vncserver; vncserver -kill :1; vncserver; }
 }
 
 ## Finish Installation
@@ -304,6 +312,12 @@ configure_termux_boot() {
 	echo -e ${GREEN}"[*] Done"
 }
 
+uninstall_tb() {
+    echo -e ${RED}"[*] Uninstalling Termux-Boot"
+	rm -rf ~/.termux/boot
+	echo -e ${GREEN}"[*] Done"
+}
+
 ## Main
 if [[ "$1" == "--install" ]]; then
 	install_td
@@ -311,6 +325,7 @@ elif [[ "$1" == "--termux-boot" ]]; then
 	configure_termux_boot
 elif [[ "$1" == "--uninstall" ]]; then
 	uninstall_td
-else
+elif [[ "$1" == "--termux-boot-uninstall" ]]; then
+	uninstall_tb
 	{ usage; reset_color; exit 0; }
 fi

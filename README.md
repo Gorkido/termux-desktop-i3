@@ -25,6 +25,11 @@ chmod +x setup.sh
 ./setup.sh --install
 ```
 
+- Alternatively you can use this one lined command.
+```
+pkg install -y git && cd $HOME && rm -rf termux-desktop-i3 && git clone --depth=1 https://github.com/Gorkido/termux-desktop-i3.git && cd termux-desktop-i3 && chmod +x setup.sh && ./setup.sh --install
+```
+
 ## Uninstallation
 
 If you want to uninstall *Termux Desktop i3*, run **setup.sh** with `--uninstall` option.
@@ -37,11 +42,6 @@ If you want to uninstall *Termux Desktop i3*, run **setup.sh** with `--uninstall
 ![image](https://user-images.githubusercontent.com/81165187/156889835-2f28e9d6-0a86-4892-ae13-dac6cd2429cb.png)
 
 [Installation Video](https://www.youtube.com/watch?v=S72oCiH6y0g)
-
-## Todo
-
-- [x] Fix polybar
-- [x] Fix the background (or make wallpaper's resolution bigger)
 
 ## Information
 
