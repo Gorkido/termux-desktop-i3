@@ -227,7 +227,7 @@ setup_vnc() {
 		mv $HOME/.vnc{,.old}
 	fi
 	echo -e ${RED}"\n[*] Setting up VNC Server..."
-	{ reset_color; vncserver; vncserver -kill :1; vncserver; }
+	{ reset_color; vncserver; }
 	sed -i -e 's/# geometry=.*/geometry=1920x1080/g' $HOME/.vnc/config
 	cat > $HOME/.vnc/xstartup <<- _EOF_
 		#!/data/data/com.termux/files/usr/bin/bash
@@ -237,6 +237,7 @@ setup_vnc() {
 		# Launch I3 Window Manager.
 		i3 &
 	_EOF_
+	{ vncserver -kill :1; vncserver; }
 }
 
 ## Finish Installation
